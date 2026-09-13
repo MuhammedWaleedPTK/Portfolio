@@ -8,23 +8,32 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="loading">
+<body>
 
+    <!-- Subtle Particle Canvas Backdrop -->
+    <canvas id="bg-canvas"></canvas>
 
     <header>
         <nav>
             <div class="logo">W</div>
             <div class="nav-right">
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#tools" class="nav-link">Tools</a></li>
+                    <li><a href="#journey" class="nav-link">Journey</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
                     <span id="theme-icon">🌙</span>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
             </div>
         </nav>
@@ -33,17 +42,20 @@
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h2 style="color: var(--accent); letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 0.5rem;">UNITY DEVELOPER</h2>
+                <div class="hero-badge">UNITY GAME DEVELOPER</div>
                 <h1>MUHAMMED <span class="accent">WALEED</span> PTK</h1>
-                <p class="subtitle">Architecting immersive gameplay & high-performance pipelines.</p>
-                <div class="about-brief" style="max-width: 650px; margin: 0 auto 2rem; color: var(--text-dim); line-height: 1.6; font-size: 0.95rem; border-left: 2px solid var(--accent); padding-left: 1.5rem; text-align: left;">
-                    <p>I am a passionate Unity Developer with <b>2.5+ years</b> of experience architecting engaging mobile titles and specialized development tools. My focus is on high-performance gameplay systems and bridging the gap between creative vision and technical execution.</p>
+                <p class="subtitle">Architecting immersive gameplay & high-performance mobile pipelines.</p>
+
+                <div class="about-brief">
+                    <p>I am a passionate Unity Developer with <b>2.5+ years</b> of experience architecting engaging mobile titles and specialized development tools. My focus is on high-performance gameplay systems, C# architecture, and bridging creative vision with technical execution.</p>
                 </div>
+
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">VIEW PROJECTS</a>
-                    <a href="#" class="btn btn-outline" download>DOWNLOAD RESUME</a>
+                    <a href="assets/Muhammed_Waleed_PTK_Resume.pdf" class="btn btn-outline" download>DOWNLOAD RESUME</a>
                     <a href="#contact" class="btn btn-outline">LET'S TALK</a>
                 </div>
+
                 <div class="stats-bar">
                     <div class="stat-item">
                         <span class="stat-num">10+</span>
@@ -53,9 +65,12 @@
                         <span class="stat-num">2.5+</span>
                         <span class="stat-label">YEARS EXP.</span>
                     </div>
+                    <div class="stat-item">
+                        <span class="stat-num">C# & Unity</span>
+                        <span class="stat-label">CORE STACK</span>
+                    </div>
                 </div>
             </div>
-            <div class="hero-background-fx"></div>
         </section>
 
         <section id="projects">
@@ -64,9 +79,11 @@
                 <div class="divider"></div>
             </div>
             <div class="projects-grid">
+
                 <!-- Project 1: Triple Category Match -->
-                <article class="project-card interactive">
+                <article class="project-card">
                     <div class="project-img">
+                        <span class="game-badge">2D MATCH</span>
                         <div class="slider-track">
                             <img src="assets/triple_match_ss1.png" alt="Triple Category Match Screenshot 1" class="project-ss active">
                             <img src="assets/triple_match_ss2.png" alt="Triple Category Match Screenshot 2" class="project-ss">
@@ -77,7 +94,15 @@
                     </div>
                     <div class="project-content">
                         <h3>Triple Category Match</h3>
-                        <p>A vibrant 2D matching game featuring complex category logic and automated testing.</p>
+                        <p>A vibrant 2D matching game featuring complex category logic and automated level validation systems.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-pill">Unity 2D</span>
+                            <span class="tech-pill">C#</span>
+                            <span class="tech-pill">Matching Logic</span>
+                            <span class="tech-pill">Auto Testing</span>
+                        </div>
+
                         <div class="project-actions">
                             <a href="https://play.google.com/store/apps/details?id=com.meemeegames.triplecategorymatch" target="_blank" class="store-btn play-store">
                                 <svg class="store-svg" viewBox="0 0 40 40">
@@ -93,8 +118,9 @@
                 </article>
 
                 <!-- Project 2: Hexa Frenzy -->
-                <article class="project-card interactive">
+                <article class="project-card">
                     <div class="project-img">
+                        <span class="game-badge">3D PUZZLE</span>
                         <div class="slider-track">
                             <img src="assets/hexa_frenzy_ss1.webp" alt="Hexa Frenzy Screenshot 1" class="project-ss active">
                             <img src="assets/hexa_frenzy_ss2.webp" alt="Hexa Frenzy Screenshot 2" class="project-ss">
@@ -103,7 +129,15 @@
                     </div>
                     <div class="project-content">
                         <h3>Hexa Frenzy</h3>
-                        <p>A vibrant hexagon puzzle game where players stack and merge colored blocks.</p>
+                        <p>A fast-paced hexagon stacking game built with dynamic stack merging and smooth visual feedback.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-pill">Unity 3D</span>
+                            <span class="tech-pill">C#</span>
+                            <span class="tech-pill">Grid Mechanics</span>
+                            <span class="tech-pill">iOS</span>
+                        </div>
+
                         <div class="project-actions">
                             <a href="https://apps.apple.com/us/app/hexa-frenzy/id6738835564" target="_blank" class="store-btn app-store">
                                 <svg class="apple-svg" viewBox="0 0 384 512">
@@ -116,8 +150,9 @@
                 </article>
 
                 <!-- Project 3: Goods Stack Puzzle -->
-                <article class="project-card interactive">
+                <article class="project-card">
                     <div class="project-img">
+                        <span class="game-badge">3D SORTING</span>
                         <div class="slider-track">
                             <img src="assets/goods_stack_ss1.webp" alt="Goods Stack Puzzle Screenshot 1" class="project-ss active">
                             <img src="assets/goods_stack_ss2.webp" alt="Goods Stack Puzzle Screenshot 2" class="project-ss">
@@ -126,7 +161,15 @@
                     </div>
                     <div class="project-content">
                         <h3>Goods Stack Puzzle</h3>
-                        <p>An engaging sorting game where players organize colorful items into carts.</p>
+                        <p>An engaging 3D sorting puzzle where players organize item stacks into carts with fluid animations.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-pill">Unity 3D</span>
+                            <span class="tech-pill">C#</span>
+                            <span class="tech-pill">Sorting Systems</span>
+                            <span class="tech-pill">Mobile Opt.</span>
+                        </div>
+
                         <div class="project-actions">
                             <a href="https://apps.apple.com/us/app/goods-stack-puzzle/id6740425912" target="_blank" class="store-btn app-store">
                                 <svg class="apple-svg" viewBox="0 0 384 512">
@@ -139,8 +182,9 @@
                 </article>
 
                 <!-- Project 4: Trainscapes -->
-                <article class="project-card interactive">
+                <article class="project-card">
                     <div class="project-img">
+                        <span class="game-badge">PATHFINDING</span>
                         <div class="slider-track">
                             <img src="assets/car_sort_ss1.png" alt="Trainscapes Screenshot 1" class="project-ss active">
                             <img src="assets/car_sort_ss2.png" alt="Trainscapes Screenshot 2" class="project-ss">
@@ -149,7 +193,15 @@
                     </div>
                     <div class="project-content">
                         <h3>Trainscapes</h3>
-                        <p>Advanced traffic sorting puzzle featuring pathfinding and custom movement systems.</p>
+                        <p>Advanced traffic sorting puzzle featuring custom pathfinding logic, splines, and collision systems.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-pill">Unity 3D</span>
+                            <span class="tech-pill">Pathfinding</span>
+                            <span class="tech-pill">Splines</span>
+                            <span class="tech-pill">C# Architecture</span>
+                        </div>
+
                         <div class="project-actions">
                             <a href="https://play.google.com/store/apps/details?id=com.meemeegames.carsort3d" target="_blank" class="store-btn play-store">
                                 <svg class="store-svg" viewBox="0 0 40 40">
@@ -165,8 +217,9 @@
                 </article>
 
                 <!-- Project 5: Lie Detective -->
-                <article class="project-card interactive">
+                <article class="project-card">
                     <div class="project-img">
+                        <span class="game-badge">DATA-DRIVEN</span>
                         <div class="slider-track">
                             <img src="assets/lie_detective_ss1.png" alt="Lie Detective Screenshot 1" class="project-ss active">
                             <img src="assets/lie_detective_ss2.png" alt="Lie Detective Screenshot 2" class="project-ss">
@@ -175,7 +228,15 @@
                     </div>
                     <div class="project-content">
                         <h3>Lie Detective</h3>
-                        <p>Investigation game built on a data-driven ScriptableObject architecture.</p>
+                        <p>Investigation title built entirely on a data-driven ScriptableObject architecture for modular narrative branches.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-pill">Unity 2D</span>
+                            <span class="tech-pill">ScriptableObjects</span>
+                            <span class="tech-pill">UI Systems</span>
+                            <span class="tech-pill">C#</span>
+                        </div>
+
                         <div class="project-actions">
                             <a href="https://play.google.com/store/apps/details?id=com.meemeegames.liedetective" target="_blank" class="store-btn play-store">
                                 <svg class="store-svg" viewBox="0 0 40 40">
@@ -189,33 +250,41 @@
                         </div>
                     </div>
                 </article>
+
             </div>
         </section>
 
         <section id="skills" class="skills-section">
+            <div class="section-head">
+                <h2>ENGINE & TECH MATRIX</h2>
+                <div class="divider"></div>
+            </div>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3>ENGINE & CORE</h3>
                     <div class="skill-items">
                         <span class="skill-tag">Unity 2D/3D</span>
-                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">C# Expert</span>
                         <span class="skill-tag">WebGL</span>
+                        <span class="skill-tag">ScriptableObjects</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>PERFORMANCE</h3>
+                    <h3>PERFORMANCE & OPTIMIZATION</h3>
                     <div class="skill-items">
-                        <span class="skill-tag">Profiling</span>
-                        <span class="skill-tag">Batching</span>
-                        <span class="skill-tag">Memory Ops</span>
+                        <span class="skill-tag">Profiler / Frame Debugger</span>
+                        <span class="skill-tag">Draw Call Batching</span>
+                        <span class="skill-tag">Memory Management</span>
+                        <span class="skill-tag">Addressables</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>SYSTEMS</h3>
+                    <h3>SYSTEMS & INTEGRATIONS</h3>
                     <div class="skill-items">
-                        <span class="skill-tag">Monetization</span>
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">Splines</span>
+                        <span class="skill-tag">Ad Monetization</span>
+                        <span class="skill-tag">Firebase & Analytics</span>
+                        <span class="skill-tag">Spline Paths</span>
+                        <span class="skill-tag">Git / Version Control</span>
                     </div>
                 </div>
             </div>
@@ -229,17 +298,17 @@
             <div class="tools-grid">
                 <div class="tool-text">
                     <h2 class="accent">SpriteCut AI</h2>
-                    <p>Automated asset processing tool designed to bridge the gap between design and development.</p>
-                    <ul style="margin-top: 1.5rem; color: var(--text-dim); list-style: square; padding-left: 1.5rem;">
-                        <li>Batch Background Removal</li>
-                        <li>Automated Padding & Shadows</li>
-                        <li>90% Pipeline Efficiency Increase</li>
+                    <p style="margin-top: 0.8rem; color: var(--text-dim);">Automated asset processing tool designed to bridge the gap between design and development.</p>
+                    <ul style="margin-top: 1.5rem; color: var(--text-dim); padding-left: 1.2rem; line-height: 1.8;">
+                        <li>Batch Background Removal for 2D Sprites</li>
+                        <li>Automated Padding & Shadow Calculations</li>
+                        <li><b>+90% Pipeline Efficiency Increase</b></li>
                     </ul>
-                    <a href="https://spritecut-ai.netlify.app/" target="_blank" class="btn btn-outline" style="margin-top: 2rem; margin-left: 0;">VISIT TOOL</a>
+                    <a href="https://spritecut-ai.netlify.app/" target="_blank" class="btn btn-primary" style="margin-top: 2rem;">VISIT TOOL</a>
                 </div>
                 <div class="tool-feature">
-                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Custom Editor Suite</h3>
-                    <p>Developed a suite of professional Unity Editor extensions for multiple successful titles, empowering non-technical designers to create complex levels using high-efficiency drag-and-drop interfaces.</p>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Custom Editor Extensions</h3>
+                    <p style="color: var(--text-dim); line-height: 1.7;">Developed a suite of professional Unity Editor extensions empowering non-technical designers to create complex level layouts using high-efficiency drag-and-drop interfaces.</p>
                 </div>
             </div>
         </section>
@@ -250,14 +319,14 @@
                 <div class="divider"></div>
             </div>
             <div class="timeline">
-                <div class="timeline-category">PROFESSIONAL</div>
+                <div class="timeline-category">PROFESSIONAL EXPERIENCE</div>
                 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2023 - PRESENT</span>
                         <h3>Unity Developer @ Amgo Games</h3>
-                        <p>Shipped 10+ titles and architected specialized tools like SpriteCut AI. Optimization lead for mobile platforms. Developed a high-impact creative workflow for successful titles like <b>Hexa Sort</b> and <b>Coins Sort</b>—re-engineering complex game mechanics in Unity to record high-fidelity gameplay for cinematic marketing production.</p>
+                        <p>Shipped 10+ mobile titles and architected specialized tools like SpriteCut AI. Optimization lead for mobile platforms. Re-engineered complex gameplay mechanics in Unity to record high-fidelity gameplay for cinematic marketing production on titles like <b>Hexa Sort</b> and <b>Coins Sort</b>.</p>
                     </div>
                 </div>
 
@@ -265,8 +334,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2022</span>
-                        <h3>Self-Learning & Unity Discovery</h3>
-                        <p>Transitioned into game development through intensive self-study. Mastered Unity fundamentals, C#, and gameplay mechanics through building personal projects and prototypes.</p>
+                        <h3>Unity Gameplay Discovery</h3>
+                        <p>Transitioned into game development through intensive self-study. Mastered Unity fundamentals, C#, and gameplay mechanics through building personal prototypes and engine experiments.</p>
                     </div>
                 </div>
 
@@ -277,7 +346,7 @@
                     <div class="timeline-content">
                         <span class="timeline-date">2019 - 2022</span>
                         <h3>B.Sc Electronics</h3>
-                        <p>Focused on analog and digital circuit design, microprocessors, and signal processing. Developed a strong technical foundation in electronic systems and logical problem-solving through hands-on laboratory work.</p>
+                        <p>Focused on analog/digital circuit design, microprocessors, and signal processing. Developed a strong technical foundation in low-level systems and logical problem solving.</p>
                     </div>
                 </div>
             </div>
@@ -288,7 +357,7 @@
                 <h2>GET IN TOUCH</h2>
                 <div class="divider" style="margin: 0 auto;"></div>
             </div>
-            <p style="margin-bottom: 3rem; color: var(--text-dim);">Ready to build something extraordinary?</p>
+            <p style="color: var(--text-dim);">Ready to collaborate or build something extraordinary?</p>
             <div class="contact-links">
                 <a href="mailto:muhammedwaleedkidanhi@gmail.com" class="nav-link">EMAIL</a>
                 <a href="https://in.linkedin.com/in/muhammed-waleed-ptk-032521224" target="_blank" class="nav-link">LINKEDIN</a>
@@ -296,25 +365,7 @@
             </div>
         </section>
         
-        <!-- Hacker Terminal Component -->
-        <div id="terminal" class="terminal-container">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <span></span><span></span><span></span>
-                </div>
-                <div class="terminal-title">WALEED_SHELL v1.0.4</div>
-            </div>
-            <div class="terminal-body" id="terminal-body">
-                <div class="terminal-line"><span class="prompt">></span> Welcome, visitor. Type 'help' for commands.</div>
-            </div>
-            <div class="terminal-input-wrapper">
-                <span class="prompt">></span>
-                <input type="text" id="terminal-input" placeholder="Enter command..." aria-label="Terminal Input">
-            </div>
-        </div>
     </main>
-
-
 
     <script src="main.js"></script>
 </body>

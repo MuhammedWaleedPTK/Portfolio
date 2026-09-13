@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle Logic
+
+    // --- Theme Toggle Logic ---
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
 
-    // Load saved theme
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 
-    if (themeBtn) { // Ensure themeBtn exists before adding listener
+    if (themeBtn) {
         themeBtn.addEventListener('click', () => {
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -17,21 +17,36 @@ document.addEventListener('DOMContentLoaded', () => {
             body.setAttribute('data-theme', newTheme);
             localStorage.setItem('portfolio-theme', newTheme);
             updateThemeIcon(newTheme);
-
-            // Assuming triggerAchievement is defined elsewhere or will be added
-            // if (typeof triggerAchievement === 'function') {
-            //     triggerAchievement('Theme Switch', `Activated ${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} Mode`);
-            // }
         });
     }
 
     function updateThemeIcon(theme) {
-        if (themeIcon) { // Ensure themeIcon exists
+        if (themeIcon) {
             themeIcon.innerText = theme === 'light' ? '🌙' : '☀️';
         }
     }
 
-    // Automated Project Sliders
+    // --- Mobile Navigation Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('mobile-active');
+        });
+
+        // Close mobile menu when a nav link is clicked
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('mobile-active');
+            });
+        });
+    }
+
+    // --- Automated Project Image Sliders ---
     const initProjectSliders = () => {
         const tracks = document.querySelectorAll('.slider-track');
 
@@ -45,89 +60,116 @@ document.addEventListener('DOMContentLoaded', () => {
                 images[currentIndex].classList.remove('active');
                 currentIndex = (currentIndex + 1) % images.length;
                 images[currentIndex].classList.add('active');
-            }, 3500 + Math.random() * 1000); // Slight offset for more natural feel
+            }, 3800 + Math.random() * 800);
         });
     };
 
     initProjectSliders();
-});
 
-// Reveal Animation on Scroll
-const observerOptions = {
-    threshold: 0.1
-};
+    // --- Scroll Reveal Animations ---
+    const observerOptions = {
+        threshold: 0.15
+    };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('reveal');
-        }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('section, .project-card, .skill-category, .tool-text, .tool-feature, .timeline-item').forEach(el => {
+        el.classList.add('hide');
+        observer.observe(el);
     });
-}, observerOptions);
 
-document.querySelectorAll('section, .project-card, .tool-feature').forEach(el => {
-    el.classList.add('hide');
-    observer.observe(el);
-});
+    // --- Subtle Background Particle Canvas ---
+    const canvas = document.getElementById('bg-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
 
-// Remove loading class after DOM load
-window.addEventListener('load', () => {
-    document.body.classList.remove('loading');
-});
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
 
-// Hacker Terminal Logic
-const terminalInput = document.getElementById('terminal-input');
-const terminalBody = document.getElementById('terminal-body');
+        const particles = [];
+        const particleCount = Math.min(Math.floor(width / 35), 40);
 
-if (terminalInput) {
-    terminalInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const command = terminalInput.value.trim().toLowerCase();
-            handleCommand(command);
-            terminalInput.value = '';
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 1.5 + 1
+            });
         }
-    });
-}
 
-function handleCommand(cmd) {
-    const line = document.createElement('div');
-    line.className = 'terminal-line';
+        let mouse = { x: null, y: null };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
-    let response = '';
+        const draw = () => {
+            ctx.clearRect(0, 0, width, height);
 
-    switch (cmd) {
-        case 'help':
-            response = 'AVAILABLE MODULES: about, projects, skills, heritage, achievements, clear';
-            break;
-        case 'about':
-            response = 'DATA: Muhammed Waleed PTK. Unity Developer based in India. Technical lead for multiple high-performance mobile titles.';
-            break;
-        case 'projects':
-            response = 'SCANNING: Accessing Project Database...';
-            location.href = '#projects';
-            break;
-        case 'contact':
-            response = 'muhammedwaleedkidanhi@gmail.com';
-            break;
-        case 'clear':
-            terminalBody.innerHTML = '';
-            return;
-        case 'secret':
-            response = 'REVEALED: [SpriteCut AI] represents the future of asset automation.';
-            break;
-        case 'heritage':
-            response = 'REDIRECTING: System logs show a transition from Electronics Engineering to Unity Development. Data-driven logic remains consistent.';
-            location.href = '#heritage';
-            break;
-        case 'skills':
-            response = 'CORE MODULES: Unity 2D/3D, C#, Optimization, Monetization, Firebase, Splines.';
-            location.href = '#skills';
-            break;
-        default:
-            response = `Command not found: ${cmd}. Type 'help' for options.`;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            const particleColor = isDark ? 'rgba(56, 189, 248, 0.4)' : 'rgba(79, 70, 229, 0.25)';
+            const lineColor = isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(79, 70, 229, 0.06)';
+
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = particleColor;
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx = p.x - p2.x;
+                    let dy = p.y - p2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = lineColor;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+
+                if (mouse.x !== null) {
+                    let mdx = p.x - mouse.x;
+                    let mdy = p.y - mouse.y;
+                    let mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                    if (mdist < 140) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(79, 70, 229, 0.1)';
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(draw);
+        };
+
+        draw();
     }
 
-    line.innerHTML = `<span class="prompt">></span> ${cmd}<br><span style="color: #fff; opacity: 0.8;">${response}</span>`;
-    terminalBody.appendChild(line);
-    terminalBody.scrollTop = terminalBody.scrollHeight;
-}
+});

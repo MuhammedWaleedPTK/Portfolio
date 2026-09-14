@@ -1,6 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Theme Toggle Logic ---
+    // --- Web Audio UI Sound FX Engine ---
+    let soundEnabled = localStorage.getItem('portfolio-sound') !== 'false';
+    const soundBtn = document.getElementById('sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+
+    const updateSoundIcon = () => {
+        if (soundIcon) {
+            soundIcon.innerText = soundEnabled ? '🔊' : '🔇';
+        }
+    };
+    updateSoundIcon();
+
+    if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('portfolio-sound', soundEnabled);
+            updateSoundIcon();
+            if (soundEnabled) playClickSound(800, 0.05);
+        });
+    }
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    const playClickSound = (freq = 600, duration = 0.04) => {
+        if (!soundEnabled) return;
+        try {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(freq * 0.5, audioCtx.currentTime + duration);
+
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch (e) {
+            // Web Audio fallback
+        }
+    };
+
+    const playHoverSound = () => {
+        if (!soundEnabled) return;
+        try {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(550, audioCtx.currentTime + 0.03);
+
+            gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.03);
+        } catch (e) {
+            // Web Audio fallback
+        }
+    };
+
+    // Attach Sound Effects to Interactive Elements
+    document.querySelectorAll('.btn, .btn-inspect, .filter-pill, .nav-link, .store-link, .contact-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => playHoverSound());
+        el.addEventListener('click', () => playClickSound(700, 0.05));
+    });
+
+    // --- Theme Switcher ---
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
@@ -26,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Mobile Navigation Menu Toggle ---
+    // --- Mobile Menu Toggle ---
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.getElementById('nav-links');
 
@@ -36,9 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('mobile-active');
         });
 
-        // Close mobile menu when a nav link is clicked
-        const links = navLinks.querySelectorAll('a');
-        links.forEach(link => {
+        navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenuBtn.classList.remove('active');
                 navLinks.classList.remove('mobile-active');
@@ -46,7 +121,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Automated Project Image Sliders ---
+
+
+    // --- Active Link Observer on Scroll ---
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // --- Screenshot Carousel Sliders ---
     const initProjectSliders = () => {
         const tracks = document.querySelectorAll('.slider-track');
 
@@ -66,7 +164,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initProjectSliders();
 
-    // --- Scroll Reveal Animations ---
+    // --- Dynamic Typewriter Role Morphing ---
+    const initTypewriter = () => {
+        const targetEl = document.getElementById('typewriter-text');
+        if (!targetEl) return;
+
+        const roles = [
+            "GAME DEVELOPER",
+            "UNITY DEVELOPER",
+            "GAMEPLAY ARCHITECT",
+            "C# SYSTEMS ENGINEER",
+            "MOBILE OPTIMIZER"
+        ];
+
+        let roleIndex = 0;
+        let charIndex = roles[0].length;
+        let isDeleting = true;
+        let typingSpeed = 80;
+
+        const type = () => {
+            const currentRole = roles[roleIndex];
+
+            if (isDeleting) {
+                targetEl.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 40;
+            } else {
+                targetEl.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 90;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                // Pause at full word
+                typingSpeed = 2200;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typingSpeed = 400;
+            }
+
+            setTimeout(type, typingSpeed);
+        };
+
+        // Start cycling after initial delay
+        setTimeout(type, 2000);
+    };
+
+    initTypewriter();
+
+    // --- Scroll Reveal Animation ---
     const observerOptions = {
         threshold: 0.15
     };
@@ -79,97 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('section, .project-card, .skill-category, .tool-text, .tool-feature, .timeline-item').forEach(el => {
+    document.querySelectorAll('section, .project-card, .skill-card, .tool-card-main, .tool-card-side, .timeline-item').forEach(el => {
         el.classList.add('hide');
         observer.observe(el);
     });
-
-    // --- Subtle Background Particle Canvas ---
-    const canvas = document.getElementById('bg-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        const particles = [];
-        const particleCount = Math.min(Math.floor(width / 35), 40);
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                radius: Math.random() * 1.5 + 1
-            });
-        }
-
-        let mouse = { x: null, y: null };
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        const draw = () => {
-            ctx.clearRect(0, 0, width, height);
-
-            const isDark = body.getAttribute('data-theme') === 'dark';
-            const particleColor = isDark ? 'rgba(56, 189, 248, 0.4)' : 'rgba(79, 70, 229, 0.25)';
-            const lineColor = isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(79, 70, 229, 0.06)';
-
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = particleColor;
-                ctx.fill();
-
-                for (let j = i + 1; j < particles.length; j++) {
-                    let p2 = particles[j];
-                    let dx = p.x - p2.x;
-                    let dy = p.y - p2.y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = lineColor;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-
-                if (mouse.x !== null) {
-                    let mdx = p.x - mouse.x;
-                    let mdy = p.y - mouse.y;
-                    let mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                    if (mdist < 140) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(79, 70, 229, 0.1)';
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            requestAnimationFrame(draw);
-        };
-
-        draw();
-    }
 
 });

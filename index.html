@@ -4,33 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammed Waleed PTK | Unity Developer Portfolio</title>
-    <meta name="description" content="Portfolio of Muhammed Waleed PTK, Unity Developer specializing in gameplay programming, tools, and mobile optimization.">
+    <meta name="description" content="Portfolio of Muhammed Waleed PTK, Unity Developer specializing in gameplay architecture, tools development, and mobile optimization.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Subtle Particle Canvas Backdrop -->
-    <canvas id="bg-canvas"></canvas>
-
+    <!-- Floating Glass Pill Header -->
     <header>
-        <nav>
-            <div class="logo">W</div>
-            <div class="nav-right">
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#tools" class="nav-link">Tools</a></li>
-                    <li><a href="#journey" class="nav-link">Journey</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+        <nav class="nav-pill">
+            <a href="#about" class="logo-badge">
+                <div class="logo-icon">W</div>
+                <span>WALEED</span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link active">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#journey" class="nav-link">Journey</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="sound-toggle" class="theme-toggle-btn" aria-label="Toggle Sound" title="Toggle Sound FX">
+                    <span id="sound-icon">🔊</span>
+                </button>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
                     <span id="theme-icon">🌙</span>
                 </button>
-                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Mobile Menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -40,67 +46,70 @@
     </header>
 
     <main>
-        <section id="hero" class="hero">
+        <!-- Hero Section -->
+        <section id="about" class="hero">
             <div class="hero-content">
-                <div class="hero-badge">UNITY GAME DEVELOPER</div>
-                <h1>MUHAMMED <span class="accent">WALEED</span> PTK</h1>
-                <p class="subtitle">Architecting immersive gameplay & high-performance mobile pipelines.</p>
-
-                <div class="about-brief">
-                    <p>I am a passionate Unity Developer with <b>2.5+ years</b> of experience architecting engaging mobile titles and specialized development tools. My focus is on high-performance gameplay systems, C# architecture, and bridging creative vision with technical execution.</p>
+                <div class="hero-pill-badge">
+                    <span class="pulse-dot"></span>
+                    <span>UNITY GAMEPLAY & TOOLS ENGINEER</span>
                 </div>
+                
+                <h1>MUHAMMED <span class="gradient-text">WALEED</span> PTK</h1>
+                <h2 class="typewriter-headline">SPECIALIZING IN <span id="typewriter-text" class="gradient-text">GAME DEVELOPER</span><span class="typewriter-cursor">|</span></h2>
+                <p class="hero-subtitle">Architecting high-performance mobile gameplay, C# frameworks, and automated Unity pipeline tools.</p>
 
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">VIEW PROJECTS</a>
-                    <a href="assets/Muhammed_Waleed_PTK_Resume.pdf" class="btn btn-outline" download>DOWNLOAD RESUME</a>
-                    <a href="#contact" class="btn btn-outline">LET'S TALK</a>
+                    <a href="#projects" class="btn btn-primary">Explore Projects ↓</a>
+                    <a href="assets/Muhammed_Waleed_PTK_Resume.pdf" class="btn btn-glass" download>Download CV 📄</a>
+                    <a href="#contact" class="btn btn-glass">Let's Talk</a>
                 </div>
 
-                <div class="stats-bar">
-                    <div class="stat-item">
-                        <span class="stat-num">10+</span>
-                        <span class="stat-label">GAMES SHIPPED</span>
+                <div class="hero-metrics">
+                    <div class="metric-card">
+                        <div class="metric-number">10+</div>
+                        <div class="metric-label">Games Shipped</div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-num">2.5+</span>
-                        <span class="stat-label">YEARS EXP.</span>
+                    <div class="metric-card">
+                        <div class="metric-number">2.5+</div>
+                        <div class="metric-label">Years Experience</div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-num">C# & Unity</span>
-                        <span class="stat-label">CORE STACK</span>
+                    <div class="metric-card">
+                        <div class="metric-number">+90%</div>
+                        <div class="metric-label">Pipeline Efficiency</div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Projects Showcase -->
         <section id="projects">
-            <div class="section-head">
-                <h2>FEATURED PROJECTS</h2>
-                <div class="divider"></div>
+            <div class="section-header">
+                <span class="section-tag">PROVEN WORK</span>
+                <h2 class="section-title">FEATURED PROJECTS</h2>
             </div>
+
             <div class="projects-grid">
 
                 <!-- Project 1: Triple Category Match -->
                 <article class="project-card">
-                    <div class="project-img">
-                        <span class="game-badge">2D MATCH</span>
+                    <div class="project-media">
                         <div class="slider-track">
                             <img src="assets/triple_match_ss1.png" alt="Triple Category Match Screenshot 1" class="project-ss active">
                             <img src="assets/triple_match_ss2.png" alt="Triple Category Match Screenshot 2" class="project-ss">
                             <img src="assets/triple_match_ss3.png" alt="Triple Category Match Screenshot 3" class="project-ss">
                             <img src="assets/triple_match_ss4.png" alt="Triple Category Match Screenshot 4" class="project-ss">
                         </div>
-                        <img src="assets/triple_match_icon.png" alt="Triple Category Match Icon" class="project-icon">
+                        <img src="assets/triple_match_icon.png" alt="Triple Match Icon" class="project-icon">
                     </div>
-                    <div class="project-content">
-                        <h3>Triple Category Match</h3>
-                        <p>A vibrant 2D matching game featuring complex category logic and automated level validation systems.</p>
+                    <div class="project-info">
+                        <h3 class="project-title">Triple Category Match</h3>
+                        <p class="project-desc">A vibrant 2D matching title engineered with complex category matching algorithms and automated level validation tools.</p>
                         
-                        <div class="tech-tags">
+                        <div class="tech-pills">
                             <span class="tech-pill">Unity 2D</span>
                             <span class="tech-pill">C#</span>
-                            <span class="tech-pill">Matching Logic</span>
-                            <span class="tech-pill">Auto Testing</span>
+                            <span class="tech-pill">Matching Engine</span>
+                            <span class="tech-pill">Automated Tests</span>
                         </div>
 
                         <div class="project-actions">
@@ -119,23 +128,22 @@
 
                 <!-- Project 2: Hexa Frenzy -->
                 <article class="project-card">
-                    <div class="project-img">
-                        <span class="game-badge">3D PUZZLE</span>
+                    <div class="project-media">
                         <div class="slider-track">
                             <img src="assets/hexa_frenzy_ss1.webp" alt="Hexa Frenzy Screenshot 1" class="project-ss active">
                             <img src="assets/hexa_frenzy_ss2.webp" alt="Hexa Frenzy Screenshot 2" class="project-ss">
                         </div>
                         <img src="assets/hexa_frenzy_icon.png" alt="Hexa Frenzy Icon" class="project-icon">
                     </div>
-                    <div class="project-content">
-                        <h3>Hexa Frenzy</h3>
-                        <p>A fast-paced hexagon stacking game built with dynamic stack merging and smooth visual feedback.</p>
+                    <div class="project-info">
+                        <h3 class="project-title">Hexa Frenzy</h3>
+                        <p class="project-desc">A 3D hexagon puzzle game featuring stack merging, dynamic grid queries, and draw call optimizations for iOS.</p>
                         
-                        <div class="tech-tags">
+                        <div class="tech-pills">
                             <span class="tech-pill">Unity 3D</span>
                             <span class="tech-pill">C#</span>
-                            <span class="tech-pill">Grid Mechanics</span>
-                            <span class="tech-pill">iOS</span>
+                            <span class="tech-pill">Grid Logic</span>
+                            <span class="tech-pill">iOS / App Store</span>
                         </div>
 
                         <div class="project-actions">
@@ -151,23 +159,22 @@
 
                 <!-- Project 3: Goods Stack Puzzle -->
                 <article class="project-card">
-                    <div class="project-img">
-                        <span class="game-badge">3D SORTING</span>
+                    <div class="project-media">
                         <div class="slider-track">
                             <img src="assets/goods_stack_ss1.webp" alt="Goods Stack Puzzle Screenshot 1" class="project-ss active">
                             <img src="assets/goods_stack_ss2.webp" alt="Goods Stack Puzzle Screenshot 2" class="project-ss">
                         </div>
-                        <img src="assets/goods_stack_icon.png" alt="Goods Stack Puzzle Icon" class="project-icon">
+                        <img src="assets/goods_stack_icon.png" alt="Goods Stack Icon" class="project-icon">
                     </div>
-                    <div class="project-content">
-                        <h3>Goods Stack Puzzle</h3>
-                        <p>An engaging 3D sorting puzzle where players organize item stacks into carts with fluid animations.</p>
+                    <div class="project-info">
+                        <h3 class="project-title">Goods Stack Puzzle</h3>
+                        <p class="project-desc">3D item organization puzzle with dynamic container stacking, batching optimizations, and smooth easing transitions.</p>
                         
-                        <div class="tech-tags">
+                        <div class="tech-pills">
                             <span class="tech-pill">Unity 3D</span>
                             <span class="tech-pill">C#</span>
-                            <span class="tech-pill">Sorting Systems</span>
-                            <span class="tech-pill">Mobile Opt.</span>
+                            <span class="tech-pill">Sorting Algorithms</span>
+                            <span class="tech-pill">Mobile Profiling</span>
                         </div>
 
                         <div class="project-actions">
@@ -183,23 +190,22 @@
 
                 <!-- Project 4: Trainscapes -->
                 <article class="project-card">
-                    <div class="project-img">
-                        <span class="game-badge">PATHFINDING</span>
+                    <div class="project-media">
                         <div class="slider-track">
                             <img src="assets/car_sort_ss1.png" alt="Trainscapes Screenshot 1" class="project-ss active">
                             <img src="assets/car_sort_ss2.png" alt="Trainscapes Screenshot 2" class="project-ss">
                         </div>
                         <img src="assets/car_sort_icon.png" alt="Trainscapes Icon" class="project-icon">
                     </div>
-                    <div class="project-content">
-                        <h3>Trainscapes</h3>
-                        <p>Advanced traffic sorting puzzle featuring custom pathfinding logic, splines, and collision systems.</p>
+                    <div class="project-info">
+                        <h3 class="project-title">Trainscapes</h3>
+                        <p class="project-desc">Complex traffic sorting puzzle featuring custom spline movement, A* pathfinding, and collision systems.</p>
                         
-                        <div class="tech-tags">
+                        <div class="tech-pills">
                             <span class="tech-pill">Unity 3D</span>
-                            <span class="tech-pill">Pathfinding</span>
+                            <span class="tech-pill">A* Pathfinding</span>
                             <span class="tech-pill">Splines</span>
-                            <span class="tech-pill">C# Architecture</span>
+                            <span class="tech-pill">C# Systems</span>
                         </div>
 
                         <div class="project-actions">
@@ -218,23 +224,22 @@
 
                 <!-- Project 5: Lie Detective -->
                 <article class="project-card">
-                    <div class="project-img">
-                        <span class="game-badge">DATA-DRIVEN</span>
+                    <div class="project-media">
                         <div class="slider-track">
                             <img src="assets/lie_detective_ss1.png" alt="Lie Detective Screenshot 1" class="project-ss active">
                             <img src="assets/lie_detective_ss2.png" alt="Lie Detective Screenshot 2" class="project-ss">
                         </div>
                         <img src="assets/lie_detective_icon.png" alt="Lie Detective Icon" class="project-icon">
                     </div>
-                    <div class="project-content">
-                        <h3>Lie Detective</h3>
-                        <p>Investigation title built entirely on a data-driven ScriptableObject architecture for modular narrative branches.</p>
+                    <div class="project-info">
+                        <h3 class="project-title">Lie Detective</h3>
+                        <p class="project-desc">Investigation game constructed entirely on a data-driven ScriptableObject framework for branching dialogue states.</p>
                         
-                        <div class="tech-tags">
+                        <div class="tech-pills">
                             <span class="tech-pill">Unity 2D</span>
                             <span class="tech-pill">ScriptableObjects</span>
-                            <span class="tech-pill">UI Systems</span>
-                            <span class="tech-pill">C#</span>
+                            <span class="tech-pill">Modular UI</span>
+                            <span class="tech-pill">C# Architecture</span>
                         </div>
 
                         <div class="project-actions">
@@ -254,118 +259,132 @@
             </div>
         </section>
 
-        <section id="skills" class="skills-section">
-            <div class="section-head">
-                <h2>ENGINE & TECH MATRIX</h2>
-                <div class="divider"></div>
+        <!-- Technical Skills Matrix -->
+        <section id="skills">
+            <div class="section-header">
+                <span class="section-tag">TECHNICAL CORE</span>
+                <h2 class="section-title">ENGINE & STACK MATRIX</h2>
             </div>
+
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>ENGINE & CORE</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Unity 2D/3D</span>
-                        <span class="skill-tag">C# Expert</span>
-                        <span class="skill-tag">WebGL</span>
-                        <span class="skill-tag">ScriptableObjects</span>
+                <div class="skill-card">
+                    <h3>🎮 ENGINE & CORE</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag" data-tooltip="2.5+ Yrs Production Experience">Unity 2D / 3D</span>
+                        <span class="skill-tag" data-tooltip="Clean Architecture & OOP Patterns">C# Expert</span>
+                        <span class="skill-tag" data-tooltip="Browser Game Performance">WebGL</span>
+                        <span class="skill-tag" data-tooltip="Modular Data Structures">ScriptableObjects</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>PERFORMANCE & OPTIMIZATION</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Profiler / Frame Debugger</span>
-                        <span class="skill-tag">Draw Call Batching</span>
-                        <span class="skill-tag">Memory Management</span>
-                        <span class="skill-tag">Addressables</span>
+
+                <div class="skill-card">
+                    <h3>⚡ PERFORMANCE & OPTIMIZATION</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag" data-tooltip="CPU & GPU Bottleneck Diagnostics">Unity Profiler</span>
+                        <span class="skill-tag" data-tooltip="Draw Call Analysis">Frame Debugger</span>
+                        <span class="skill-tag" data-tooltip="Draw Calls < 30 per Scene">Draw Call Batching</span>
+                        <span class="skill-tag" data-tooltip="Dynamic Asset Loading">Addressables</span>
+                        <span class="skill-tag" data-tooltip="GC & Allocation Reduction">Memory Ops</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>SYSTEMS & INTEGRATIONS</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Ad Monetization</span>
-                        <span class="skill-tag">Firebase & Analytics</span>
-                        <span class="skill-tag">Spline Paths</span>
-                        <span class="skill-tag">Git / Version Control</span>
+
+                <div class="skill-card">
+                    <h3>🛠️ SYSTEMS & INTEGRATIONS</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag" data-tooltip="MAX & IronSource Monetization">Ad Monetization</span>
+                        <span class="skill-tag" data-tooltip="Real-Time Telemetry & Config">Firebase & Analytics</span>
+                        <span class="skill-tag" data-tooltip="Procedural Path Logic">Spline Paths</span>
+                        <span class="skill-tag" data-tooltip="Multi-Developer Repositories">Git / Version Control</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Tools & Automation Spotlight -->
         <section id="tools">
-            <div class="section-head">
-                <h2>WORKFLOW & AUTOMATION</h2>
-                <div class="divider"></div>
+            <div class="section-header">
+                <span class="section-tag">AUTOMATION & PIPELINES</span>
+                <h2 class="section-title">DEV TOOLS & FORGE</h2>
             </div>
-            <div class="tools-grid">
-                <div class="tool-text">
-                    <h2 class="accent">SpriteCut AI</h2>
-                    <p style="margin-top: 0.8rem; color: var(--text-dim);">Automated asset processing tool designed to bridge the gap between design and development.</p>
-                    <ul style="margin-top: 1.5rem; color: var(--text-dim); padding-left: 1.2rem; line-height: 1.8;">
-                        <li>Batch Background Removal for 2D Sprites</li>
-                        <li>Automated Padding & Shadow Calculations</li>
-                        <li><b>+90% Pipeline Efficiency Increase</b></li>
+
+            <div class="tools-showcase">
+                <div class="tool-card-main">
+                    <span class="section-tag">FEATURED TOOL</span>
+                    <h2 class="gradient-text" style="font-size: 2rem; margin: 0.4rem 0 1rem;">SpriteCut AI</h2>
+                    <p style="color: var(--text-dim); font-size: 0.95rem;">Automated asset processing tool built to eliminate repetitive 2D sprite preparation tasks between art and dev teams.</p>
+                    
+                    <ul style="color: var(--text-dim); margin: 1.5rem 0 2rem; padding-left: 1.2rem; line-height: 1.8;">
+                        <li>Batch Background Removal for 2D Game Assets</li>
+                        <li>Automated Sprite Padding & Shadow Calculation</li>
+                        <li><b style="color: var(--accent-cyan);">+90% Pipeline Efficiency Increase</b></li>
                     </ul>
-                    <a href="https://spritecut-ai.netlify.app/" target="_blank" class="btn btn-primary" style="margin-top: 2rem;">VISIT TOOL</a>
+
+                    <a href="https://spritecut-ai.netlify.app/" target="_blank" class="btn btn-primary">Visit Live Tool ↗</a>
                 </div>
-                <div class="tool-feature">
-                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Custom Editor Extensions</h3>
-                    <p style="color: var(--text-dim); line-height: 1.7;">Developed a suite of professional Unity Editor extensions empowering non-technical designers to create complex level layouts using high-efficiency drag-and-drop interfaces.</p>
+
+                <div class="tool-card-side">
+                    <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--accent-cyan);">Custom Unity Extensions</h3>
+                    <p style="color: var(--text-dim); font-size: 0.92rem; line-height: 1.7;">Architected drag-and-drop Unity Editor extensions empowering non-technical level designers to compose complex level grids directly inside the Unity Scene view without code changes.</p>
                 </div>
             </div>
         </section>
 
-        <section id="journey" class="heritage-section">
-            <div class="section-head">
-                <h2>CAREER & EDUCATION</h2>
-                <div class="divider"></div>
+        <!-- Career & Education Timeline -->
+        <section id="journey">
+            <div class="section-header">
+                <span class="section-tag">TIMELINE</span>
+                <h2 class="section-title">CAREER & EDUCATION</h2>
             </div>
+
             <div class="timeline">
-                <div class="timeline-category">PROFESSIONAL EXPERIENCE</div>
-                
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-box">
                         <span class="timeline-date">2023 - PRESENT</span>
                         <h3>Unity Developer @ Amgo Games</h3>
-                        <p>Shipped 10+ mobile titles and architected specialized tools like SpriteCut AI. Optimization lead for mobile platforms. Re-engineered complex gameplay mechanics in Unity to record high-fidelity gameplay for cinematic marketing production on titles like <b>Hexa Sort</b> and <b>Coins Sort</b>.</p>
+                        <p>Shipped 10+ mobile titles and architected specialized tools like SpriteCut AI. Optimization lead for mobile platforms. Re-engineered game mechanics in Unity to record high-fidelity gameplay for cinematic marketing production on titles like <b>Hexa Sort</b> and <b>Coins Sort</b>.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-box">
                         <span class="timeline-date">2022</span>
                         <h3>Unity Gameplay Discovery</h3>
-                        <p>Transitioned into game development through intensive self-study. Mastered Unity fundamentals, C#, and gameplay mechanics through building personal prototypes and engine experiments.</p>
+                        <p>Transitioned into game development through intensive self-study. Mastered Unity C# fundamentals, physics systems, and gameplay mechanics through building personal prototypes.</p>
                     </div>
                 </div>
-
-                <div class="timeline-category">EDUCATION</div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-box">
                         <span class="timeline-date">2019 - 2022</span>
                         <h3>B.Sc Electronics</h3>
-                        <p>Focused on analog/digital circuit design, microprocessors, and signal processing. Developed a strong technical foundation in low-level systems and logical problem solving.</p>
+                        <p>Focused on analog/digital circuit design, microprocessors, and signal processing. Formed a solid foundation in low-level systems and logical problem-solving.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="contact-section">
-            <div class="section-head">
-                <h2>GET IN TOUCH</h2>
-                <div class="divider" style="margin: 0 auto;"></div>
-            </div>
-            <p style="color: var(--text-dim);">Ready to collaborate or build something extraordinary?</p>
-            <div class="contact-links">
-                <a href="mailto:muhammedwaleedkidanhi@gmail.com" class="nav-link">EMAIL</a>
-                <a href="https://in.linkedin.com/in/muhammed-waleed-ptk-032521224" target="_blank" class="nav-link">LINKEDIN</a>
-                <a href="https://github.com/MuhammedWaleedPTK" target="_blank" class="nav-link">GITHUB</a>
+            <div class="contact-card">
+                <span class="section-tag">GET IN TOUCH</span>
+                <h2 class="section-title" style="margin: 0.5rem 0 1rem;">Let's Build Extraordinary Games</h2>
+                <p style="color: var(--text-dim); max-width: 550px; margin: 0 auto 2rem;">Interested in collaborating on mobile titles, C# architecture, or Unity tool pipelines?</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:ptkwaleed@gmail.com" class="contact-btn">✉ Email Me</a>
+                    <a href="https://in.linkedin.com/in/muhammed-waleed-ptk-032521224" target="_blank" class="contact-btn">💼 LinkedIn ↗</a>
+                    <a href="https://github.com/MuhammedWaleedPTK" target="_blank" class="contact-btn">💻 GitHub ↗</a>
+                </div>
             </div>
         </section>
-        
     </main>
+
+    <footer>
+        <p>© 2026 Muhammed Waleed PTK. Architected with HTML, CSS, and Vanilla JS.</p>
+    </footer>
 
     <script src="main.js"></script>
 </body>
